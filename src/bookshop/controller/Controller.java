@@ -19,9 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import bookshop.command.CommandAction;
 
-/**
- * Servlet implementation class Controller
- */
 @WebServlet(
 		urlPatterns = { 
 				"/Controller", 
@@ -71,7 +68,7 @@ public class Controller extends HttpServlet {
 			try {
 				Class<?> commandClass = Class.forName(className);
 				Object commandInstance = commandClass.newInstance();
-				commandMap.put(command, commandClass);
+				commandMap.put(command, commandInstance);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -103,13 +100,13 @@ public class Controller extends HttpServlet {
 			}
 			com = (CommandAction) commandMap.get(command);
 			view = com.requestPro(request, response);
+			
+			request.setAttribute("cont", view);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+			dispatcher.forward(request, response);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
-		
-		request.setAttribute("cont", view);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request, response);
 	}
-
+	
 }
