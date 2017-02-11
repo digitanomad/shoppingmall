@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <link rel="stylesheet" href="/shoppingmall/css/style.css"/>
 <script src="/shoppingmall/js/jquery-1.11.0.min.js"></script>
-<script src="/shoppingmall/mngr/managermain.js"></script>
+<script src="/shoppingmall/mngr/managerMain.js"></script>
 
 <c:if test="${empty sessionScope.id}">
 	<div id="mList"><p>로그인 하세요.
