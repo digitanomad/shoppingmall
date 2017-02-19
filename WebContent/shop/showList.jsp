@@ -43,7 +43,7 @@
 				<img src="/shoppingmall/bookImage/${book.getBookImage()}" class="listimage"></a>
 			</td>
 			<td width="350" class="vhcenter">
-				<a href="/shoppingmall/bookContent.do?book_id=${book.getBookId()}&book_kind=${book.getBook_kind()}" class="b">${book.getBookTitle()}</a>
+				<a href="/shoppingmall/bookContent.do?book_id=${book.getBookId()}&book_kind=${book.getBookKind()}" class="b">${book.getBookTitle()}</a>
 			</td>
 			<td rowspan="4" width="100">
 				<c:if test="${book.getBookCount()==0}">

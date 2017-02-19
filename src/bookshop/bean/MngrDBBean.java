@@ -279,7 +279,7 @@ public class MngrDBBean {
 			conn = getConnection();
 			String sql1 = "select * from book";
 			String sql2 = "select * from book";
-			sql2 += "where book_kind = ? order by reg_date desc";
+			sql2 += " where book_kind=? order by reg_date desc";
 			
 			if ("all".equals(bookKind) || "".equals(bookKind)) {
 				pstmt = conn.prepareStatement(sql1);
@@ -325,13 +325,12 @@ public class MngrDBBean {
 	 * @param count
 	 * @return
 	 */
-	public MngrDataBean[] getBooks(String bookKind, int count) {
+	public List<MngrDataBean> getBooks(String bookKind, int count) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		MngrDataBean[] bookList = null;
-		int i = 0;
+		List<MngrDataBean> bookList = null;
 		
 		try {
 			conn = getConnection();
@@ -346,7 +345,7 @@ public class MngrDBBean {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				bookList = new MngrDataBean[count];
+				bookList = new ArrayList<MngrDataBean>();
 				do {
 					MngrDataBean book = new MngrDataBean();
 					book.setBookId(rs.getInt("book_id"));
@@ -361,8 +360,7 @@ public class MngrDBBean {
                     book.setDiscountRate(rs.getByte("discount_rate"));
                     book.setRegDate(rs.getTimestamp("reg_date"));
                     
-                    bookList[i] = book;
-                    i++;
+                    bookList.add(book);
 				} while (rs.next());
 			}
 		} catch (Exception e) {

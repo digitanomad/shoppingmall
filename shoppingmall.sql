@@ -98,5 +98,5 @@ select * from book;
 drop table book;
 
 
-
+select count(*) from book
 
